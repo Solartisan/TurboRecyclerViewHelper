@@ -12,26 +12,17 @@ import cc.solart.turbo.BaseViewHolder;
 import cc.solart.turbo.simple.R;
 
 /**
- * -------------------------------------------------------------------------
- * Author: imilk
- * Create:  18:29
- * -------------------------------------------------------------------------
- * Describe:
- * -------------------------------------------------------------------------
- * Changes:
- * -------------------------------------------------------------------------
- * 18 : Create by imilk
- * -------------------------------------------------------------------------
+ * author: imilk
+ * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
 public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.SimpleViewHolder> {
-
 
     public SimpleAdapter(Context context) {
         super(context);
     }
 
-    public SimpleAdapter(Context context,List<String> data) {
-        super(context,data);
+    public SimpleAdapter(Context context, List<String> data) {
+        super(context, data);
     }
 
     @Override
@@ -45,7 +36,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     }
 
 
-    class SimpleViewHolder extends BaseViewHolder{
+    class SimpleViewHolder extends BaseViewHolder {
 
         TextView tv;
 

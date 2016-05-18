@@ -15,7 +15,87 @@ dependencies {
 }
 ```
 
+Usage
+-----
+you can use it in layout xml
 
+```xml
+    <cc.solart.turbo.TurboRecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay" />
+```
+
+
+```java
+public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.SimpleViewHolder> {
+    
+    public SimpleAdapter(Context context) {
+        super(context);
+    }
+
+    public SimpleAdapter(Context context, List<String> data) {
+        super(context, data);
+    }
+
+    @Override
+    protected SimpleViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType) {
+        return new SimpleViewHolder(getItemView(R.layout.item_simple, parent));
+    }
+
+    @Override
+    protected void convert(SimpleViewHolder holder, String item) {
+        holder.tv.setText(item);
+    }
+
+
+    class SimpleViewHolder extends BaseViewHolder {
+
+        TextView tv;
+
+        protected SimpleViewHolder(View view) {
+            super(view);
+            tv = findViewById(R.id.simple_text);
+        }
+    }
+}
+```
+
+```java
+
+        mRecyclerView = (TurboRecyclerView) findViewById(R.id.rv_list);
+
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.addItemDecoration(new LinearDividerItemDecoration(this, LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
+
+        mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
+        View header = LayoutInflater.from(this).inflate(R.layout.item_header, null);
+        mAdapter.addHeaderView(header);
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, null);
+        mAdapter.addFooterView(footer);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLoadMoreEnabled(true);
+        mRecyclerView.addOnItemClickListener(new OnItemClickListener(mRecyclerView) {
+            @Override
+            public void onItemClick(RecyclerView.ViewHolder vh, int position) {
+                Toast.makeText(SimpleActivity.this, "您点击了第" + position + "个item", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mRecyclerView.addOnLoadingMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadingMore() {
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        mRecyclerView.loadMoreComplete(Arrays.asList(sCheeseStrings));
+                    }
+                }, 2000);
+            }
+        });
+```
 
 Changelog
 ---------
