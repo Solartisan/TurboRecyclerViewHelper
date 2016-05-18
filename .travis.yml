@@ -1,0 +1,29 @@
+language: android
+android:
+  components:
+    - platform-tools
+    - tools
+    - build-tools-23.0.2
+    - android-23
+    - extra-android-m2repository
+
+branches:
+  only:
+    - master
+
+notifications:
+  email: false
+
+before_install:
+
+  # for gradle output style
+  - export TERM=dumb
+
+  # environment info
+  - ./gradlew -v
+  - uname -a
+
+# Let's try to build...
+
+script:
+  - ./gradlew

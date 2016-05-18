@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">TurboRecyclerViewHelper</string>
+
+    <string-array name="animators">
+        <item>Slide left</item>
+        <item>Slide right</item>
+        <item>Slide top</item>
+        <item>Slide bottom</item>
+        <item>Scale</item>
+        <item>Slide right and Scale</item>
+    </string-array>
+
+    <string-array name="adapters">
+        <item>Alpha</item>
+        <item>Slide left</item>
+        <item>Slide right</item>
+        <item>Slide bottom</item>
+        <item>Scale</item>
+        <item>Slide bottom</item>
+    </string-array>
+</resources>
