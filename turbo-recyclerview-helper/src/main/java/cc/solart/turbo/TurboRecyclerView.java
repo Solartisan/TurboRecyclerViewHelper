@@ -17,7 +17,7 @@ package cc.solart.turbo;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.os.Build;
+import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
@@ -92,7 +92,11 @@ public class TurboRecyclerView extends RecyclerView {
     public TurboRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        mTotalDragDistance = convertDpToPixel(context, DRAG_MAX_DISTANCE);
+        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.TurboRecyclerView);
+        int max = ta.getInteger(R.styleable.TurboRecyclerView_maxDragDistance,DRAG_MAX_DISTANCE);
+        mTotalDragDistance = convertDpToPixel(context, max);
+        mLoadEnabled = ta.getBoolean(R.styleable.TurboRecyclerView_enableLoad,false);
+        ta.recycle();
     }
 
     public void addOnItemClickListener(OnItemClickListener listener) {
@@ -354,7 +358,7 @@ public class TurboRecyclerView extends RecyclerView {
                 if(canScrollHorizontally)
                     animateOffsetToEnd("translationX", mInterpolator, 0f);
                 if(canScrollVertically)
-                    animateOffsetToEnd("TranslationY", mInterpolator, 0f);
+                    animateOffsetToEnd("translationY", mInterpolator, 0f);
                 final int index = MotionEventCompat.findPointerIndex(e, mActivePointerId);
                 if (index < 0) {
                     Log.e(TAG, "Got ACTION_UP event but don't have an active pointer id.");
@@ -428,7 +432,7 @@ public class TurboRecyclerView extends RecyclerView {
 
 
     /**
-     *
+     * complete loading
      * @param data
      */
     public void loadMoreComplete(List<?> data) {

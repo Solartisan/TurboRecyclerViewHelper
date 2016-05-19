@@ -70,11 +70,11 @@ public abstract class OnItemClickListener implements RecyclerView.OnItemTouchLis
             View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
             if (child!=null) {
                 RecyclerView.ViewHolder vh = recyclerView.getChildViewHolder(child);
-                onLongClick(vh,vh.getAdapterPosition());
+                onItemLongClick(vh,vh.getAdapterPosition());
             }
         }
     }
 
-    public void onLongClick(RecyclerView.ViewHolder vh,int position){}
+    public void onItemLongClick(RecyclerView.ViewHolder vh,int position){}
     abstract public void onItemClick(RecyclerView.ViewHolder vh,int position);
 }

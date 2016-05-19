@@ -108,16 +108,6 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     /**
-     * setting up a new instance to data;
-     *
-     * @param data
-     */
-    public synchronized void setNewData(List<T> data) {
-        this.mData = data;
-        notifyDataSetChanged();
-    }
-
-    /**
      * additional data;
      *
      * @param data
@@ -295,19 +285,36 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public void addHeaderView(View header) {
         if (header == null) {
-            throw new RuntimeException("header is null");
+            Log.e(TAG,"header is null!!!");
+            return;
         }
         this.mHeaderView = header;
         this.notifyDataSetChanged();
     }
 
+    public void removeHeaderView() {
+        if(mHeaderView!=null) {
+            this.mHeaderView = null;
+            this.notifyDataSetChanged();
+        }
+    }
+
     public void addFooterView(View footer) {
         if (footer == null) {
-            throw new RuntimeException("footer is null");
+            Log.e(TAG,"footer is null!!!");
+            return;
         }
         this.mFooterView = footer;
         this.notifyDataSetChanged();
     }
+
+    public void removeFooterView(View footer) {
+        if(mFooterView!=null) {
+            this.mFooterView = null;
+            this.notifyDataSetChanged();
+        }
+    }
+
 
     /**
      * Sets the view to show if the adapter is empty

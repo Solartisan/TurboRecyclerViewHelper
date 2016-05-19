@@ -1,13 +1,21 @@
 TurboRecyclerViewHelper project
-========================
+====
 
 Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecyclerViewHelper.svg?branch=master)](https://travis-ci.org/Solartisan/TurboRecyclerViewHelper)
 
-Upward sliding loading
+A library that Powerful and flexible RecyclerView
 
+
+Features
+---
+* **Recyclerview upward sliding load**
+* **Supports setEmptyView**
+* **Supports add HeaderView and FooterView**
+* **Supports item click and long click**
+* **Supports custom load view**
 
 Gradle
-------
+---
 ```
 dependencies {
     ...
@@ -16,18 +24,19 @@ dependencies {
 ```
 
 Usage
------
-you can use it in layout xml
+---
+#### **use `TurboRecyclerView` in the layout file**
 
 ```xml
     <cc.solart.turbo.TurboRecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:scrollbarStyle="outsideOverlay" />
+        app:maxDragDistance="100"
+        app:enableLoad="true" />
 ```
 
+#### **create a simple adapter extends `BaseTurboAdapter`**
 
 ```java
 public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.SimpleViewHolder> {
@@ -63,13 +72,9 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 }
 ```
 
+#### **add HeaderView and FooterView**
+
 ```java
-
-        mRecyclerView = (TurboRecyclerView) findViewById(R.id.rv_list);
-
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new LinearDividerItemDecoration(this, LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
-
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
         View header = LayoutInflater.from(this).inflate(R.layout.item_header, null);
         mAdapter.addHeaderView(header);
@@ -77,14 +82,24 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
         mAdapter.addFooterView(footer);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadMoreEnabled(true);
+```
+
+#### **add `OnItemClickListener`**
+        
+```java
         mRecyclerView.addOnItemClickListener(new OnItemClickListener(mRecyclerView) {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh, int position) {
                 Toast.makeText(SimpleActivity.this, "您点击了第" + position + "个item", Toast.LENGTH_SHORT).show();
             }
         });
+```
 
-        mRecyclerView.addOnLoadingMoreListener(new OnLoadMoreListener() {
+#### **enable loading more and add `OnLoadingMoreListener`**
+
+```java
+		mRecyclerView.setLoadMoreEnabled(true);//or use enableLoad in xml
+    	mRecyclerView.addOnLoadingMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadingMore() {
                 handler.postDelayed(new Runnable() {
@@ -94,20 +109,22 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
                     }
                 }, 2000);
             }
-        });
+   	    });
 ```
 
 Changelog
----------
+---
 * **1.0.0-beta**
     * Initial release
+* **1.0.1-beta**
+    * Add styleable
     
 Thanks
-------
+---
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
 License
--------
+---
 
     Copyright 2015 - 2016 solartisan/imilk
 

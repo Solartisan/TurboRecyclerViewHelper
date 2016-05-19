@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TurboRecyclerView">
+        <attr name="maxDragDistance" format="integer" />
+        <attr name="enableLoad" format="boolean" />
+    </declare-styleable>
+</resources>
