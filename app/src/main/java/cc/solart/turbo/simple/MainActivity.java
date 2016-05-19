@@ -17,4 +17,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,SimpleActivity.class);
         startActivity(intent);
     }
+
+    public void multi(View viw){
+        Intent intent = new Intent(this,MultiTypeActivity.class);
+        startActivity(intent);
+    }
+
+    public void empty(View viw){
+        Intent intent = new Intent(this,EmptyActivity.class);
+        startActivity(intent);
+    }
 }

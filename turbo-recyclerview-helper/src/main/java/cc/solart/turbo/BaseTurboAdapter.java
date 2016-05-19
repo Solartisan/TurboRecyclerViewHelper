@@ -119,6 +119,11 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
         notifyDataSetChanged();
     }
 
+    public synchronized void setNewData(List<T> data) {
+        mData.clear();
+        addData(data);
+    }
+
 
     public List getData() {
         return mData;
@@ -242,7 +247,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     abstract protected VH onCreateDefViewHolder(ViewGroup parent, int viewType);
 
     private BaseViewHolder createBaseViewHolder(ViewGroup parent, int layoutResId) {
-        return new BaseViewHolder(getItemView(layoutResId, parent));
+        return new BaseViewHolder(inflateItemView(layoutResId, parent));
     }
 
     /**
@@ -250,7 +255,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
      * @param parent
      * @return
      */
-    protected View getItemView(int layoutResId, ViewGroup parent) {
+    protected View inflateItemView(int layoutResId, ViewGroup parent) {
         return mLayoutInflater.inflate(layoutResId, parent, false);
     }
 

@@ -15,7 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SimpleActivity"></activity>
+        <activity android:name=".SimpleActivity" />
+        <activity android:name=".MultiTypeActivity" />
+        <activity android:name=".EmptyActivity"></activity>
     </application>
 
 </manifest>

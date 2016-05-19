@@ -15,6 +15,9 @@ Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/
 * **Supports item click and long click**
 * **Supports custom load view**
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
+
 Gradle
 ---
 ```

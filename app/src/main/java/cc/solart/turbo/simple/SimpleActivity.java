@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.Arrays;
@@ -36,9 +37,9 @@ public class SimpleActivity extends AppCompatActivity {
         mRecyclerView.addItemDecoration(new LinearDividerItemDecoration(this, LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
 
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
-        View header = LayoutInflater.from(this).inflate(R.layout.item_header, null);
+        View header = LayoutInflater.from(this).inflate(R.layout.item_header, (ViewGroup) mRecyclerView.getParent(),false);
         mAdapter.addHeaderView(header);
-        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, null);
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, (ViewGroup) mRecyclerView.getParent(),false);
         mAdapter.addFooterView(footer);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadMoreEnabled(true);

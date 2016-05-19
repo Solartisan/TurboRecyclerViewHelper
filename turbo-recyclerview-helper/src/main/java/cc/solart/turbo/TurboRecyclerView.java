@@ -336,7 +336,6 @@ public class TurboRecyclerView extends RecyclerView {
                 if (canScrollVertically && Math.abs(deltaY) > mTouchSlop && deltaY < 0) {
 
                     float targetEnd = -dampAxis(deltaY);
-                    Log.w(TAG, "targetEnd = " + targetEnd);
                     setTranslationY(targetEnd);
                     return true;
                 }

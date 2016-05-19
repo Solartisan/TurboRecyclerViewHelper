@@ -18,6 +18,9 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 * **支持自定义加载Footer**
 	* 可以通过自定义自己应用的加载效果  
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
+
 Gradle
 ---
 ```
