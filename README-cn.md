@@ -1,19 +1,22 @@
-TurboRecyclerViewHelper project（[中文版文档](https://github.com/Solartisan/TurboRecyclerViewHelper/blob/master/README-cn.md)）
-========================================================================================================================
+TurboRecyclerViewHelper project
+====
 
 Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecyclerViewHelper.svg?branch=master)](https://travis-ci.org/Solartisan/TurboRecyclerViewHelper)
 
-A library that powerful and flexible RecyclerView.
-Like us if you love our work. your support is great power for us.
+一个强大并且灵活的RecyclerView库。欢迎大家使用（如果您喜欢，希望您能star一下，你的支持对我来说是巨大的动力）
 
 
-Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
+有哪些功能（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
-* **RecyclerView upward sliding load**
-* **Supports setEmptyView**
-* **Supports add HeaderView and FooterView**
-* **Supports item click and long click**
-* **Supports custom load view**
+* **上拉加载更多**
+	* 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过度，所以针对这种情况实现了有过度效果的上拉加载部分的实现
+* **支持设置EmptyView**
+	* 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）
+* **支持添加Header和Footer** 
+* **支持添加点击事件和长按事件**
+	* 通过触摸事件实现的方案
+* **支持自定义加载Footer**
+	* 可以通过自定义自己应用的加载效果  
 
 Gradle
 ---
@@ -24,9 +27,9 @@ dependencies {
 }
 ```
 
-Usage
+如何使用
 ---
-#### **use `TurboRecyclerView` in the layout file**
+#### **在布局文件中添加`TurboRecyclerView`**
 
 ```xml
     <cc.solart.turbo.TurboRecyclerView
@@ -37,7 +40,7 @@ Usage
         app:enableLoad="true" />
 ```
 
-#### **create a simple adapter extends `BaseTurboAdapter`**
+#### **创建一个简单的适配器继承于`BaseTurboAdapter`**
 
 ```java
 public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.SimpleViewHolder> {
@@ -73,7 +76,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 }
 ```
 
-#### **add HeaderView and FooterView**
+#### **添加Header和Footer**
 
 ```java
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
@@ -85,7 +88,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
         mRecyclerView.setLoadMoreEnabled(true);
 ```
 
-#### **add `OnItemClickListener`**
+#### **添加点击和长按事件**
         
 ```java
         mRecyclerView.addOnItemClickListener(new OnItemClickListener(mRecyclerView) {
@@ -96,7 +99,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
         });
 ```
 
-#### **enable loading more and add `OnLoadingMoreListener`**
+#### **允许启用上拉加载以及添加监听事件**
 
 ```java
 		mRecyclerView.setLoadMoreEnabled(true);//or use enableLoad in xml
@@ -113,18 +116,18 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
    	    });
 ```
 
-Changelog
+更新日志
 ---
 * **1.0.0-beta**
     * Initial release
 * **1.0.1-beta**
     * Add styleable
     
-Thanks
+感谢
 ---
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
-License
+许可
 ---
 
     Copyright 2015 - 2016 solartisan/imilk
