@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/dp_10"
     android:paddingRight="@dimen/dp_10"
-    tools:context="cc.solart.turbo.simple.MultiTypeActivity"
-    android:background="@color/bg_color">
+    tools:context="cc.solart.turbo.simple.MultiTypeActivity">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
