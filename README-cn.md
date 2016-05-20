@@ -8,7 +8,7 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 
 有哪些功能（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
-* **上拉加载更多**
+* **上拉/左滑加载更多**
 	* 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过度，所以针对这种情况实现了有过度效果的上拉加载部分的实现
 * **支持设置EmptyView**
 	* 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）

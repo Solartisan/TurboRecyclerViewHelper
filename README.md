@@ -1,5 +1,5 @@
-TurboRecyclerViewHelper project（[中文版文档](https://github.com/Solartisan/TurboRecyclerViewHelper/blob/master/README-cn.md)）
-========================================================================================================================
+TurboRecyclerViewHelper project（[中文文档](https://github.com/Solartisan/TurboRecyclerViewHelper/blob/master/README-cn.md)）
+=======================================================================================================================
 
 Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecyclerViewHelper.svg?branch=master)](https://travis-ci.org/Solartisan/TurboRecyclerViewHelper)
 
