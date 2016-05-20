@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,6 +33,12 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 
     @Override
     protected void convert(SimpleViewHolder holder, String item) {
+        holder.tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "child text item click", Toast.LENGTH_SHORT).show();
+            }
+        });
         holder.tv.setText(item);
     }
 

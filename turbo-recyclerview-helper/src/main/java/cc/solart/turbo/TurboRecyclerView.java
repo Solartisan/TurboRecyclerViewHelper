@@ -242,7 +242,7 @@ public class TurboRecyclerView extends RecyclerView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
-        if (!mLoadEnabled || canScrollEnd() || mIsLoading) {
+        if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
             return super.onInterceptTouchEvent(e);
         }
 
@@ -290,9 +290,16 @@ public class TurboRecyclerView extends RecyclerView {
         }
     }
 
+    private boolean isEmpty(){
+        if(getAdapter()==null){
+            return true;
+        }
+        return ((BaseTurboAdapter)getAdapter()).isEmpty();
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent e) {
-        if (!mLoadEnabled || canScrollEnd() || mIsLoading) {
+        if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
             return super.onTouchEvent(e);
         }
 

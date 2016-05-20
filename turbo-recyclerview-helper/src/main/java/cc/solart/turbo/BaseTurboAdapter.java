@@ -29,8 +29,8 @@ import java.util.List;
 
 /**
  * A subclass of RecyclerView.Adapter responsible for providing views that add header/footer/empty view
- *
- *
+ * <p/>
+ * <p/>
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
@@ -63,9 +63,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     /**
-     * Same as QuickAdapter#QuickAdapter(Context,int) but with
-     * some initialization data.
-     *
+     * initialization
      * @param context The context.
      * @param data    A new list is created out of this one to avoid mutable list
      */
@@ -125,7 +123,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
 
-    public List getData() {
+    public synchronized List getData() {
         return mData;
     }
 
@@ -160,6 +158,14 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public int getEmptyViewCount() {
         return mEmptyView == null ? 0 : 1;
+    }
+
+    /**
+     * Whether there is data exists？
+     * @return
+     */
+    protected boolean isEmpty() {
+        return getHeaderViewsCount() + getFooterViewsCount() + getData().size() == 0;
     }
 
     @Override
@@ -290,7 +296,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public void addHeaderView(View header) {
         if (header == null) {
-            Log.e(TAG,"header is null!!!");
+            Log.e(TAG, "header is null!!!");
             return;
         }
         this.mHeaderView = header;
@@ -298,7 +304,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     public void removeHeaderView() {
-        if(mHeaderView!=null) {
+        if (mHeaderView != null) {
             this.mHeaderView = null;
             this.notifyDataSetChanged();
         }
@@ -306,7 +312,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public void addFooterView(View footer) {
         if (footer == null) {
-            Log.e(TAG,"footer is null!!!");
+            Log.e(TAG, "footer is null!!!");
             return;
         }
         this.mFooterView = footer;
@@ -314,7 +320,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     public void removeFooterView(View footer) {
-        if(mFooterView!=null) {
+        if (mFooterView != null) {
             this.mFooterView = null;
             this.notifyDataSetChanged();
         }
