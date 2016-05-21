@@ -48,12 +48,12 @@ public class TurboRecyclerView extends RecyclerView {
     private static final float DRAG_RATE = .5f;
     private static final int INVALID_POINTER = -1;
 
-    private final ArrayList<OnItemClickListener> mOnItemClickListeners =
+    private final ArrayList<OnItemTouchListener> mOnItemTouchListeners =
             new ArrayList<>();
     private final ArrayList<OnLoadMoreListener> mOnLoadMoreListeners =
             new ArrayList<>();
 
-    private OnItemClickListener mActiveOnItemClickListener;
+    private OnItemTouchListener mActiveOnItemTouchListener;
 
     private int mInitialMotionX, mInitialMotionY;
     private int mTouchSlop;
@@ -99,14 +99,19 @@ public class TurboRecyclerView extends RecyclerView {
         ta.recycle();
     }
 
-    public void addOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListeners.add(listener);
-        addOnItemTouchListener(listener);
+    @Override
+    public void addOnItemTouchListener(OnItemTouchListener listener) {
+        super.addOnItemTouchListener(listener);
+        mOnItemTouchListeners.add(listener);
     }
 
-    public void removeOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListeners.remove(listener);
-        removeOnItemTouchListener(listener);
+    @Override
+    public void removeOnItemTouchListener(OnItemTouchListener listener) {
+        super.removeOnItemTouchListener(listener);
+        mOnItemTouchListeners.remove(listener);
+        if (mActiveOnItemTouchListener == listener) {
+            mActiveOnItemTouchListener = null;
+        }
     }
 
     public void addOnLoadingMoreListener(OnLoadMoreListener listener) {
@@ -195,14 +200,14 @@ public class TurboRecyclerView extends RecyclerView {
     private boolean dispatchOnItemTouchIntercept(MotionEvent e) {
         final int action = e.getAction();
         if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_DOWN) {
-            mActiveOnItemClickListener = null;
+            mActiveOnItemTouchListener = null;
         }
 
-        final int listenerCount = mOnItemClickListeners.size();
+        final int listenerCount = mOnItemTouchListeners.size();
         for (int i = 0; i < listenerCount; i++) {
-            final OnItemClickListener listener = mOnItemClickListeners.get(i);
+            final OnItemTouchListener listener = mOnItemTouchListeners.get(i);
             if (listener.onInterceptTouchEvent(this, e) && action != MotionEvent.ACTION_CANCEL) {
-                mActiveOnItemClickListener = listener;
+                mActiveOnItemTouchListener = listener;
                 return true;
             }
         }
@@ -211,15 +216,15 @@ public class TurboRecyclerView extends RecyclerView {
 
     private boolean dispatchOnItemTouch(MotionEvent e) {
         final int action = e.getAction();
-        if (mActiveOnItemClickListener != null) {
+        if (mActiveOnItemTouchListener != null) {
             if (action == MotionEvent.ACTION_DOWN) {
                 // Stale state from a previous gesture, we're starting a new one. Clear it.
-                mActiveOnItemClickListener = null;
+                mActiveOnItemTouchListener = null;
             } else {
-                mActiveOnItemClickListener.onTouchEvent(this, e);
+                mActiveOnItemTouchListener.onTouchEvent(this, e);
                 if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
                     // Clean up for the next gesture.
-                    mActiveOnItemClickListener = null;
+                    mActiveOnItemTouchListener = null;
                 }
                 return true;
             }
@@ -228,11 +233,11 @@ public class TurboRecyclerView extends RecyclerView {
         // Listeners will have already received the ACTION_DOWN via dispatchOnItemTouchIntercept
         // as called from onInterceptTouchEvent; skip it.
         if (action != MotionEvent.ACTION_DOWN) {
-            final int listenerCount = mOnItemClickListeners.size();
+            final int listenerCount = mOnItemTouchListeners.size();
             for (int i = 0; i < listenerCount; i++) {
-                final OnItemClickListener listener = mOnItemClickListeners.get(i);
+                final OnItemTouchListener listener = mOnItemTouchListeners.get(i);
                 if (listener.onInterceptTouchEvent(this, e)) {
-                    mActiveOnItemClickListener = listener;
+                    mActiveOnItemTouchListener = listener;
                     return true;
                 }
             }
@@ -448,9 +453,10 @@ public class TurboRecyclerView extends RecyclerView {
             if (adapter instanceof BaseTurboAdapter) {
                 ((BaseTurboAdapter) adapter).loadingMoreComplete(data);
             }else {
-                Log.w(TAG, "");
+                Log.w(TAG, "Cannot callback adapter.");
             }
         }
     }
+
 
 }

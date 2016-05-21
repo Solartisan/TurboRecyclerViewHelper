@@ -10,7 +10,7 @@
         android:padding="16dp"
         android:textSize="16sp"
         android:id="@+id/simple_text"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:text="simple placeholder...."
         android:layout_height="wrap_content"
         />

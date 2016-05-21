@@ -19,7 +19,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
 
-
+/**
+ * author: imilk
+ * https://github.com/Solartisan/TurboRecyclerViewHelper
+ */
 public class BaseViewHolder extends RecyclerView.ViewHolder {
 
     /**

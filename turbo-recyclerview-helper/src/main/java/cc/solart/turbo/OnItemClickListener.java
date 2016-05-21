@@ -15,65 +15,13 @@
  */
 package cc.solart.turbo;
 
-import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.View;
 
 /**
- * Known bug: No pressing effect!
- * Looking for solutions, please contact me if you have good suggestions.
- *
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
-public abstract class OnItemClickListener implements RecyclerView.OnItemTouchListener{
-    private GestureDetectorCompat mGestureDetector;
-    private RecyclerView recyclerView;
-
-    public OnItemClickListener(RecyclerView recyclerView){
-        this.recyclerView = recyclerView;
-        mGestureDetector = new GestureDetectorCompat(recyclerView.getContext(),new ItemTouchHelperGestureListener());
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent e) {
-        mGestureDetector.onTouchEvent(e);
-        return false;
-    }
-
-    @Override
-    public void onTouchEvent(RecyclerView recyclerView, MotionEvent e) {
-        mGestureDetector.onTouchEvent(e);
-    }
-
-    @Override
-    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-    }
-
-    private class ItemTouchHelperGestureListener extends GestureDetector.SimpleOnGestureListener {
-
-        @Override
-        public boolean onSingleTapUp(MotionEvent e) {
-            View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-            if (child!=null) {
-                RecyclerView.ViewHolder vh = recyclerView.getChildViewHolder(child);
-                onItemClick(vh,vh.getAdapterPosition());
-            }
-            return true;
-        }
-
-        @Override
-        public void onLongPress(MotionEvent e) {
-            View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
-            if (child!=null) {
-                RecyclerView.ViewHolder vh = recyclerView.getChildViewHolder(child);
-                onItemLongClick(vh,vh.getAdapterPosition());
-            }
-        }
-    }
+public abstract class OnItemClickListener {
 
     public void onItemLongClick(RecyclerView.ViewHolder vh,int position){}
     abstract public void onItemClick(RecyclerView.ViewHolder vh,int position);

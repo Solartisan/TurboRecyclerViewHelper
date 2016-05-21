@@ -16,7 +16,6 @@
 package cc.solart.turbo;
 
 /**
- *
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */

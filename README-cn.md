@@ -14,7 +14,7 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 	* 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）
 * **支持添加Header和Footer** 
 * **支持添加点击事件和长按事件**
-	* 通过触摸事件实现的方案
+	* 通过给item添加点击事件实现(1.0.2之前版本通过OnItemTouch方案实现，但存在没有点击效果的bug，如有更好的方案劳烦告知。)
 * **支持自定义加载Footer**
 	* 可以通过自定义自己应用的加载效果  
 
@@ -26,7 +26,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.1-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.2-beta'
 }
 ```
 
@@ -94,7 +94,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 #### **添加点击和长按事件**
         
 ```java
-        mRecyclerView.addOnItemClickListener(new OnItemClickListener(mRecyclerView) {
+        mAdapter.addOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh, int position) {
                 Toast.makeText(SimpleActivity.this, "您点击了第" + position + "个item", Toast.LENGTH_SHORT).show();
@@ -124,7 +124,10 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 * **1.0.0-beta**
     * Initial release
 * **1.0.1-beta**
-    * Add styleable
+    * 添加styleable属性
+* **1.0.2-beta**
+    * 修复EmptyView显示时扔可上拉的bug
+    * 修改Item点击和长按的实现方案
     
 感谢
 ---

@@ -12,6 +12,7 @@
         app:cardElevation="@dimen/dp_2"
         android:layout_margin="@dimen/dp_4">
         <TextView
+            android:id="@+id/text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

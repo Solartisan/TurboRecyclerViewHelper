@@ -9,7 +9,7 @@ Like us if you love our work. your support is great power for us.
 
 Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
-* **RecyclerView upward sliding load**
+* **RecyclerView upward sliding/left sliding load**
 * **Supports setEmptyView**
 * **Supports add HeaderView and FooterView**
 * **Supports item click and long click**
@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.1-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.2-beta'
 }
 ```
 
@@ -91,7 +91,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 #### **add `OnItemClickListener`**
         
 ```java
-        mRecyclerView.addOnItemClickListener(new OnItemClickListener(mRecyclerView) {
+        mAdapter.addOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(RecyclerView.ViewHolder vh, int position) {
                 Toast.makeText(SimpleActivity.this, "您点击了第" + position + "个item", Toast.LENGTH_SHORT).show();
@@ -122,6 +122,9 @@ Changelog
     * Initial release
 * **1.0.1-beta**
     * Add styleable
+* **1.0.2-beta**
+    * Fix empty state can be refreshed
+    * Modify click/long click 
     
 Thanks
 ---

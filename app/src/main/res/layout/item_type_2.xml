@@ -12,6 +12,7 @@
         app:cardElevation="@dimen/dp_2"
         android:layout_margin="@dimen/dp_4">
         <ImageView
+            android:id="@+id/image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/bed_1"

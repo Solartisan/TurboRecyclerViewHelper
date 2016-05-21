@@ -43,6 +43,9 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     protected static final int FOOTER_VIEW = 1 << 7;
     protected static final int HEADER_VIEW = 1 << 8;
 
+    private final ArrayList<OnItemClickListener> mOnItemClickListeners =
+            new ArrayList<>();
+
     private boolean mLoading = false;
     private boolean mEmptyEnable;
 
@@ -64,6 +67,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     /**
      * initialization
+     *
      * @param context The context.
      * @param data    A new list is created out of this one to avoid mutable list
      */
@@ -73,13 +77,13 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
         this.mLayoutInflater = LayoutInflater.from(context);
     }
 
-    public synchronized void add(T item) {
+    public void add(T item) {
         boolean isAdd = mData.add(item);
         if (isAdd)
             notifyItemInserted(mData.size() + getHeaderViewsCount());
     }
 
-    public synchronized void add(int position, T item) {
+    public void add(int position, T item) {
         if (position < 0 || position > mData.size()) {
             Log.e(TAG, "position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
@@ -89,14 +93,14 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
             notifyItemInserted(position + getHeaderViewsCount());
     }
 
-    public synchronized void remove(T item) {
+    public void remove(T item) {
         int index = mData.indexOf(item);
         boolean isRemoved = mData.remove(item);
         if (isRemoved)
             notifyItemRemoved(index + getHeaderViewsCount());
     }
 
-    public synchronized void remove(int position) {
+    public void remove(int position) {
         if (position < 0 || position >= mData.size()) {
             Log.e(TAG, "position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
@@ -110,20 +114,20 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
      *
      * @param data
      */
-    public synchronized void addData(List<T> data) {
+    public void addData(List<T> data) {
         if (data != null) {
             this.mData.addAll(data);
         }
         notifyDataSetChanged();
     }
 
-    public synchronized void setNewData(List<T> data) {
+    public void setNewData(List<T> data) {
         mData.clear();
         addData(data);
     }
 
 
-    public synchronized List getData() {
+    public List getData() {
         return mData;
     }
 
@@ -162,6 +166,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     /**
      * Whether there is data exists？
+     *
      * @return
      */
     protected boolean isEmpty() {
@@ -227,6 +232,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
                 break;
             default:
                 vh = onCreateDefViewHolder(parent, viewType);
+                dispatchItemClickListener(vh);
                 break;
         }
         return vh;
@@ -394,5 +400,41 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     void loadingMoreComplete(List<T> data) {
         mLoading = false;
         addData(data);
+    }
+
+    public void addOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListeners.add(listener);
+    }
+
+    public void removeOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListeners.remove(listener);
+    }
+
+    private void dispatchItemClickListener(final BaseViewHolder vh) {
+
+        vh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mOnItemClickListeners != null && mOnItemClickListeners.size() > 0) {
+                    for (int i = 0; i < mOnItemClickListeners.size(); i++) {
+                        final OnItemClickListener listener = mOnItemClickListeners.get(i);
+                        listener.onItemClick(vh, vh.getLayoutPosition() - getHeaderViewsCount());
+                    }
+                }
+            }
+        });
+        vh.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (mOnItemClickListeners != null && mOnItemClickListeners.size() > 0) {
+                    for (int i = 0; i < mOnItemClickListeners.size(); i++) {
+                        final OnItemClickListener listener = mOnItemClickListeners.get(i);
+                        listener.onItemLongClick(vh, vh.getLayoutPosition() - getHeaderViewsCount());
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }
