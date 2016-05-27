@@ -9,7 +9,7 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 有哪些功能（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
 * **上拉/左滑加载更多**
-	* 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过度，所以针对这种情况实现了有过度效果的上拉加载部分的实现
+	* 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过渡效果，所以针对这种情况实现了有过渡效果的上拉加载部分的实现
 * **支持设置EmptyView**
 	* 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）
 * **支持添加Header和Footer** 
@@ -58,7 +58,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 
     @Override
     protected SimpleViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType) {
-        return new SimpleViewHolder(getItemView(R.layout.item_simple, parent));
+        return new SimpleViewHolder(inflateItemView(R.layout.item_simple, parent));
     }
 
     @Override
@@ -126,7 +126,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 * **1.0.1-beta**
     * 添加styleable属性
 * **1.0.2-beta**
-    * 修复EmptyView显示时扔可上拉的bug
+    * 修复EmptyView显示时仍可上拉的bug
     * 修改Item点击和长按的实现方案
     
 感谢

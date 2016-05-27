@@ -55,7 +55,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 
     @Override
     protected SimpleViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType) {
-        return new SimpleViewHolder(getItemView(R.layout.item_simple, parent));
+        return new SimpleViewHolder(inflateItemView(R.layout.item_simple, parent));
     }
 
     @Override
