@@ -26,7 +26,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.2-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
 }
 ```
 
