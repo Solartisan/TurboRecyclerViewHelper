@@ -80,9 +80,9 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 
 ```java
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
-        View header = LayoutInflater.from(this).inflate(R.layout.item_header, null);
+        View header = LayoutInflater.from(this).inflate(R.layout.item_header, (ViewGroup) mRecyclerView.getParent(), false);
         mAdapter.addHeaderView(header);
-        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, null);
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, (ViewGroup) mRecyclerView.getParent(), false);
         mAdapter.addFooterView(footer);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadMoreEnabled(true);
@@ -125,6 +125,8 @@ Changelog
 * **1.0.2-beta**
     * Fix empty state can be refreshed
     * Modify click/long click 
+* **1.0.3-beta**
+    * Fix missing generic type
     
 Thanks
 ---

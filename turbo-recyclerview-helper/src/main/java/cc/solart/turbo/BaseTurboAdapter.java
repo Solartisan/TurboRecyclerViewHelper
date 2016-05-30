@@ -127,7 +127,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
 
-    public List getData() {
+    public List<T> getData() {
         return mData;
     }
 

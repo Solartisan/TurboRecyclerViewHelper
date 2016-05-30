@@ -83,9 +83,9 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 
 ```java
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
-        View header = LayoutInflater.from(this).inflate(R.layout.item_header, null);
+        View header = LayoutInflater.from(this).inflate(R.layout.item_header, (ViewGroup) mRecyclerView.getParent(), false);
         mAdapter.addHeaderView(header);
-        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, null);
+        View footer = LayoutInflater.from(this).inflate(R.layout.item_footer, (ViewGroup) mRecyclerView.getParent(), false);
         mAdapter.addFooterView(footer);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLoadMoreEnabled(true);
@@ -128,6 +128,8 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 * **1.0.2-beta**
     * 修复EmptyView显示时仍可上拉的bug
     * 修改Item点击和长按的实现方案
+* **1.0.3-beta**
+    * 修复遗漏的泛型值
     
 感谢
 ---
