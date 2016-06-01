@@ -80,7 +80,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     public void add(T item) {
         boolean isAdd = mData.add(item);
         if (isAdd)
-            notifyItemInserted(mData.size() + getHeaderViewsCount());
+            notifyItemInserted(mData.size() + getHeaderViewCount());
     }
 
     public void add(int position, T item) {
@@ -90,14 +90,14 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
         }
         boolean isAdd = mData.add(item);
         if (isAdd)
-            notifyItemInserted(position + getHeaderViewsCount());
+            notifyItemInserted(position + getHeaderViewCount());
     }
 
     public void remove(T item) {
         int index = mData.indexOf(item);
         boolean isRemoved = mData.remove(item);
         if (isRemoved)
-            notifyItemRemoved(index + getHeaderViewsCount());
+            notifyItemRemoved(index + getHeaderViewCount());
     }
 
     public void remove(int position) {
@@ -106,7 +106,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
             return;
         }
         mData.remove(position);
-        notifyItemRemoved(position + getHeaderViewsCount());
+        notifyItemRemoved(position + getHeaderViewCount());
     }
 
     /**
@@ -152,11 +152,11 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
         return position;
     }
 
-    public int getHeaderViewsCount() {
+    public int getHeaderViewCount() {
         return mHeaderView == null ? 0 : 1;
     }
 
-    public int getFooterViewsCount() {
+    public int getFooterViewCount() {
         return mFooterView == null ? 0 : 1;
     }
 
@@ -170,7 +170,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
      * @return
      */
     protected boolean isEmpty() {
-        return getHeaderViewsCount() + getFooterViewsCount() + getData().size() == 0;
+        return getHeaderViewCount() + getFooterViewCount() + getData().size() == 0;
     }
 
     @Override
@@ -178,9 +178,9 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
         int count;
         if (mLoading) { //if loading ignore footer view
-            count = mData.size() + 1 + getHeaderViewsCount();
+            count = mData.size() + 1 + getHeaderViewCount();
         } else {
-            count = mData.size() + getHeaderViewsCount() + getFooterViewsCount();
+            count = mData.size() + getHeaderViewCount() + getFooterViewCount();
         }
         mEmptyEnable = false;
         if (count == 0) {
@@ -197,7 +197,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
             return HEADER_VIEW;
         } else if (mEmptyView != null && getItemCount() == 1 && mEmptyEnable) {
             return EMPTY_VIEW;
-        } else if (position == mData.size() + getHeaderViewsCount()) {
+        } else if (position == mData.size() + getHeaderViewCount()) {
             if (mLoading) {
                 return LOADING_VIEW;
             } else if (mFooterView != null) {
@@ -285,7 +285,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
             case FOOTER_VIEW:
                 break;
             default:
-                convert((VH) holder, mData.get(holder.getLayoutPosition() - getHeaderViewsCount()));
+                convert((VH) holder, mData.get(holder.getLayoutPosition() - getHeaderViewCount()));
                 break;
         }
 
@@ -418,7 +418,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
                 if (mOnItemClickListeners != null && mOnItemClickListeners.size() > 0) {
                     for (int i = 0; i < mOnItemClickListeners.size(); i++) {
                         final OnItemClickListener listener = mOnItemClickListeners.get(i);
-                        listener.onItemClick(vh, vh.getLayoutPosition() - getHeaderViewsCount());
+                        listener.onItemClick(vh, vh.getLayoutPosition() - getHeaderViewCount());
                     }
                 }
             }
@@ -429,7 +429,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
                 if (mOnItemClickListeners != null && mOnItemClickListeners.size() > 0) {
                     for (int i = 0; i < mOnItemClickListeners.size(); i++) {
                         final OnItemClickListener listener = mOnItemClickListeners.get(i);
-                        listener.onItemLongClick(vh, vh.getLayoutPosition() - getHeaderViewsCount());
+                        listener.onItemLongClick(vh, vh.getLayoutPosition() - getHeaderViewCount());
                     }
                     return true;
                 }

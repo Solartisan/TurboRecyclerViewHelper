@@ -1,5 +1,7 @@
 TurboRecyclerViewHelper project
-====
+===============================
+
+>* **[实现RecyclerView的功能扩展](http://solart.cc/2016/06/01/turbo-recyclerview-helper-1/)**
 
 Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecyclerViewHelper.svg?branch=master)](https://travis-ci.org/Solartisan/TurboRecyclerViewHelper)
 
@@ -130,9 +132,12 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 修改Item点击和长按的实现方案
 * **1.0.3-beta**
     * 修复遗漏的泛型值
-    
+* **1.0.4-beta**
+    * 修复在检测是否为空状态时类型转换异常的bug
+      
 感谢
 ---
+[base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
 许可

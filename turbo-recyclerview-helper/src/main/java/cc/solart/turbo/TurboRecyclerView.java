@@ -37,7 +37,7 @@ import java.util.List;
 
 /**
  * A subclass of RecyclerView responsible for providing views that refresh new data set.
- *
+ * <p/>
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
@@ -92,10 +92,10 @@ public class TurboRecyclerView extends RecyclerView {
     public TurboRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        TypedArray ta = context.obtainStyledAttributes(attrs,R.styleable.TurboRecyclerView);
-        int max = ta.getInteger(R.styleable.TurboRecyclerView_maxDragDistance,DRAG_MAX_DISTANCE);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TurboRecyclerView);
+        int max = ta.getInteger(R.styleable.TurboRecyclerView_maxDragDistance, DRAG_MAX_DISTANCE);
         mTotalDragDistance = convertDpToPixel(context, max);
-        mLoadEnabled = ta.getBoolean(R.styleable.TurboRecyclerView_enableLoad,false);
+        mLoadEnabled = ta.getBoolean(R.styleable.TurboRecyclerView_enableLoad, false);
         ta.recycle();
     }
 
@@ -123,14 +123,13 @@ public class TurboRecyclerView extends RecyclerView {
     }
 
     /**
-     *
      * @param enabled
      */
-    public void setLoadMoreEnabled(boolean enabled){
+    public void setLoadMoreEnabled(boolean enabled) {
         mLoadEnabled = enabled;
     }
 
-    public boolean isLoadMoreEnabled(){
+    public boolean isLoadMoreEnabled() {
         return mLoadEnabled;
     }
 
@@ -295,11 +294,11 @@ public class TurboRecyclerView extends RecyclerView {
         }
     }
 
-    private boolean isEmpty(){
-        if(getAdapter()==null){
+    private boolean isEmpty() {
+        if (getAdapter() == null || !(getAdapter() instanceof BaseTurboAdapter)) {
             return true;
         }
-        return ((BaseTurboAdapter)getAdapter()).isEmpty();
+        return ((BaseTurboAdapter) getAdapter()).isEmpty();
     }
 
     @Override
@@ -366,9 +365,9 @@ public class TurboRecyclerView extends RecyclerView {
             break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL: {
-                if(canScrollHorizontally)
+                if (canScrollHorizontally)
                     animateOffsetToEnd("translationX", mInterpolator, 0f);
-                if(canScrollVertically)
+                if (canScrollVertically)
                     animateOffsetToEnd("translationY", mInterpolator, 0f);
                 final int index = MotionEventCompat.findPointerIndex(e, mActivePointerId);
                 if (index < 0) {
@@ -386,7 +385,7 @@ public class TurboRecyclerView extends RecyclerView {
                     mIsLoading = true;
                     dispatchOnLoadingMoreListeners();
                     smoothScrollToPosition(mLastVisibleItemPosition + 1);
-                } else{
+                } else {
                     mIsLoading = false;
                 }
 
@@ -444,6 +443,7 @@ public class TurboRecyclerView extends RecyclerView {
 
     /**
      * complete loading
+     *
      * @param data
      */
     public void loadMoreComplete(List<?> data) {
@@ -452,7 +452,7 @@ public class TurboRecyclerView extends RecyclerView {
             Adapter adapter = getAdapter();
             if (adapter instanceof BaseTurboAdapter) {
                 ((BaseTurboAdapter) adapter).loadingMoreComplete(data);
-            }else {
+            } else {
                 Log.w(TAG, "Cannot callback adapter.");
             }
         }

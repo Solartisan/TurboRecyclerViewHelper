@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.4-beta'
 }
 ```
 
@@ -127,9 +127,12 @@ Changelog
     * Modify click/long click 
 * **1.0.3-beta**
     * Fix missing generic type
+* **1.0.4-beta**
+    * Fix ClassCastException in isEmpty()
     
 Thanks
----
+------
+[base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
 License
