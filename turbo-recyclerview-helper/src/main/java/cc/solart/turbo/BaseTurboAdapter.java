@@ -357,16 +357,17 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
             final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
-            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    BaseTurboAdapter adapter = (BaseTurboAdapter) recyclerView.getAdapter();
-                    if (isFullSpanType(adapter.getItemViewType(position))) {
-                        return gridLayoutManager.getSpanCount();
+            if (gridLayoutManager.getSpanSizeLookup() == null)
+                gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                    @Override
+                    public int getSpanSize(int position) {
+                        BaseTurboAdapter adapter = (BaseTurboAdapter) recyclerView.getAdapter();
+                        if (isFullSpanType(adapter.getItemViewType(position))) {
+                            return gridLayoutManager.getSpanCount();
+                        }
+                        return 1;
                     }
-                    return 1;
-                }
-            });
+                });
         }
     }
 

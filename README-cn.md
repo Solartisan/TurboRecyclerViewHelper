@@ -28,7 +28,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.3-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.5-beta'
 }
 ```
 
@@ -134,6 +134,8 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 修复遗漏的泛型值
 * **1.0.4-beta**
     * 修复在检测是否为空状态时类型转换异常的bug
+* **1.0.5-beta**
+    * 修复调用者setSpanSizeLookup被覆盖(这意味着你必须自己处理GridLayoutManager中FullSpan的类型)
       
 感谢
 ---

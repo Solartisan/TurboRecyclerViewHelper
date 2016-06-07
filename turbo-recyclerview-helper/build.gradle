@@ -35,7 +35,7 @@ dependencies {
 }
 
 
-version = "1.0.4-beta"
+version = "1.0.5-beta"
 
 // 根节点添加
 def siteUrl = 'https://github.com/Solartisan/TurboRecyclerViewHelper'    // project homepage
