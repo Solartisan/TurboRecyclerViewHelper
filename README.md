@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.5-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.6-beta'
 }
 ```
 
@@ -131,6 +131,8 @@ Changelog
     * Fix ClassCastException in isEmpty()
 * **1.0.5-beta**
     * Fix setSpanSizeLookup invalid
+* **1.0.6-beta**
+    * Fix incorrect slide direction cause refresh
     
 Thanks
 ------

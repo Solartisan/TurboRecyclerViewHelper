@@ -38,10 +38,10 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     protected static final String TAG = "BaseTurboAdapter";
 
-    protected static final int EMPTY_VIEW = 1 << 5;
-    protected static final int LOADING_VIEW = 1 << 6;
-    protected static final int FOOTER_VIEW = 1 << 7;
-    protected static final int HEADER_VIEW = 1 << 8;
+    public static final int TYPE_EMPTY_VIEW = 1 << 5;
+    public static final int TYPE_LOADING_VIEW = 1 << 6;
+    public static final int TYPE_FOOTER_VIEW = 1 << 7;
+    public static final int TYPE_HEADER_VIEW = 1 << 8;
 
     private final ArrayList<OnItemClickListener> mOnItemClickListeners =
             new ArrayList<>();
@@ -194,14 +194,14 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     @Override
     public final int getItemViewType(int position) {
         if (mHeaderView != null && position == 0) {
-            return HEADER_VIEW;
+            return TYPE_HEADER_VIEW;
         } else if (mEmptyView != null && getItemCount() == 1 && mEmptyEnable) {
-            return EMPTY_VIEW;
+            return TYPE_EMPTY_VIEW;
         } else if (position == mData.size() + getHeaderViewCount()) {
             if (mLoading) {
-                return LOADING_VIEW;
+                return TYPE_LOADING_VIEW;
             } else if (mFooterView != null) {
-                return FOOTER_VIEW;
+                return TYPE_FOOTER_VIEW;
             }
         }
         return getDefItemViewType(position);
@@ -215,19 +215,19 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     public final BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         BaseViewHolder vh;
         switch (viewType) {
-            case LOADING_VIEW:
+            case TYPE_LOADING_VIEW:
                 vh = onCreateLoadingViewHolder(parent);
                 if (vh == null) {
                     vh = createBaseViewHolder(parent, R.layout.footer_item_default_loading);
                 }
                 break;
-            case EMPTY_VIEW:
+            case TYPE_EMPTY_VIEW:
                 vh = new BaseViewHolder(mEmptyView);
                 break;
-            case FOOTER_VIEW:
+            case TYPE_FOOTER_VIEW:
                 vh = new BaseViewHolder(mFooterView);
                 break;
-            case HEADER_VIEW:
+            case TYPE_HEADER_VIEW:
                 vh = new BaseViewHolder(mHeaderView);
                 break;
             default:
@@ -276,13 +276,13 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
         switch (holder.getItemViewType()) {
 
-            case LOADING_VIEW:
+            case TYPE_LOADING_VIEW:
                 break;
-            case HEADER_VIEW:
+            case TYPE_HEADER_VIEW:
                 break;
-            case EMPTY_VIEW:
+            case TYPE_EMPTY_VIEW:
                 break;
-            case FOOTER_VIEW:
+            case TYPE_FOOTER_VIEW:
                 break;
             default:
                 convert((VH) holder, mData.get(holder.getLayoutPosition() - getHeaderViewCount()));
@@ -387,7 +387,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     private boolean isFullSpanType(int type) {
-        return type == HEADER_VIEW || type == FOOTER_VIEW || type == LOADING_VIEW || type == EMPTY_VIEW;
+        return type == TYPE_HEADER_VIEW || type == TYPE_FOOTER_VIEW || type == TYPE_LOADING_VIEW || type == TYPE_EMPTY_VIEW;
     }
 
     @Override

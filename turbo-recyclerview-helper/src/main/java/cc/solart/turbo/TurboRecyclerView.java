@@ -247,6 +247,7 @@ public class TurboRecyclerView extends RecyclerView {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
         if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
+            Log.i(TAG, "onInterceptTouchEvent cannotScrollEnd...");
             return super.onInterceptTouchEvent(e);
         }
 
@@ -304,6 +305,7 @@ public class TurboRecyclerView extends RecyclerView {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
+            Log.i(TAG, "onTouchEvent cannotScrollEnd...");
             return super.onTouchEvent(e);
         }
 
@@ -380,7 +382,8 @@ public class TurboRecyclerView extends RecyclerView {
                 final float overScrollBottom = (mInitialMotionY - y) * DRAG_RATE;
                 final float overScrollRight = (mInitialMotionX - x) * DRAG_RATE;
 
-                if (overScrollBottom > mTotalDragDistance || overScrollRight > mTotalDragDistance) {
+                if ((canScrollVertically && overScrollBottom > mTotalDragDistance)
+                        || (canScrollHorizontally && overScrollRight > mTotalDragDistance)) {
                     Log.i(TAG, "refreshing...");
                     mIsLoading = true;
                     dispatchOnLoadingMoreListeners();
