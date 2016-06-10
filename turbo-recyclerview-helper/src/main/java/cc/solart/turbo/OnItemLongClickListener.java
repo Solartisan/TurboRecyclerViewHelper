@@ -21,7 +21,6 @@ import android.support.v7.widget.RecyclerView;
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
-public interface OnItemClickListener {
-
-    void onItemClick(RecyclerView.ViewHolder vh,int position);
+public interface OnItemLongClickListener {
+    void onItemLongClick(RecyclerView.ViewHolder vh, int position);
 }

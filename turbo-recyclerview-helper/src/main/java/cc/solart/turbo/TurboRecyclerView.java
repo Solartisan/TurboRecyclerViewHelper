@@ -247,7 +247,6 @@ public class TurboRecyclerView extends RecyclerView {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
         if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
-            Log.i(TAG, "onInterceptTouchEvent cannotScrollEnd...");
             return super.onInterceptTouchEvent(e);
         }
 
@@ -305,7 +304,6 @@ public class TurboRecyclerView extends RecyclerView {
     @Override
     public boolean onTouchEvent(MotionEvent e) {
         if (!mLoadEnabled || canScrollEnd() || mIsLoading || isEmpty()) {
-            Log.i(TAG, "onTouchEvent cannotScrollEnd...");
             return super.onTouchEvent(e);
         }
 

@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.6-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.7-beta'
 }
 ```
 
@@ -133,6 +133,8 @@ Changelog
     * Fix setSpanSizeLookup invalid
 * **1.0.6-beta**
     * Fix incorrect slide direction cause refresh
+* **1.0.7-beta**
+    * Fix AdapterView setOnClick exception
     
 Thanks
 ------
