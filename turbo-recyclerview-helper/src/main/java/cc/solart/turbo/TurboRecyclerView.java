@@ -311,6 +311,10 @@ public class TurboRecyclerView extends RecyclerView {
             return true;
         }
 
+        if (getLayoutManager() == null) {
+            return false;
+        }
+
         final boolean canScrollHorizontally = getLayoutManager().canScrollHorizontally();
         final boolean canScrollVertically = getLayoutManager().canScrollVertically();
 
@@ -345,7 +349,6 @@ public class TurboRecyclerView extends RecyclerView {
 
                 int deltaY = y - mInitialMotionY;
                 if (canScrollVertically && Math.abs(deltaY) > mTouchSlop && deltaY < 0) {
-
                     float targetEnd = -dampAxis(deltaY);
                     setTranslationY(targetEnd);
                     return true;
@@ -372,7 +375,7 @@ public class TurboRecyclerView extends RecyclerView {
                 final int index = MotionEventCompat.findPointerIndex(e, mActivePointerId);
                 if (index < 0) {
                     Log.e(TAG, "Got ACTION_UP event but don't have an active pointer id.");
-                    return false;
+                    return super.onTouchEvent(e);
                 }
 
                 final int y = getMotionEventY(e, index);
@@ -386,13 +389,15 @@ public class TurboRecyclerView extends RecyclerView {
                     mIsLoading = true;
                     dispatchOnLoadingMoreListeners();
                     smoothScrollToPosition(mLastVisibleItemPosition + 1);
+                    mActivePointerId = INVALID_POINTER;
+                    return true;
                 } else {
                     mIsLoading = false;
+                    mActivePointerId = INVALID_POINTER;
                 }
 
-                mActivePointerId = INVALID_POINTER;
-                return true;
             }
+            break;
         }
         return super.onTouchEvent(e);
     }
@@ -422,8 +427,8 @@ public class TurboRecyclerView extends RecyclerView {
         float slingshotDist = mTotalDragDistance;
         float tensionSlingshotPercent = Math.max(0,
                 Math.min(extraOS, slingshotDist * 2) / slingshotDist);
-        float tensionPercent = (float) ((tensionSlingshotPercent / 4) - Math.pow(
-                (tensionSlingshotPercent / 4), 2)) * 2f;
+        float tensionPercent = (float) ((tensionSlingshotPercent / 4) -
+                Math.pow((tensionSlingshotPercent / 4), 2)) * 2f;
         float extraMove = (slingshotDist) * tensionPercent / 2;
         float targetEnd = (slingshotDist * boundedDragPercent) + extraMove;
         return targetEnd;
@@ -454,7 +459,7 @@ public class TurboRecyclerView extends RecyclerView {
             if (adapter instanceof BaseTurboAdapter) {
                 ((BaseTurboAdapter) adapter).loadingMoreComplete(data);
             } else {
-                Log.w(TAG, "Cannot callback adapter.");
+                Log.e(TAG, "Cannot callback adapter.");
             }
         }
     }

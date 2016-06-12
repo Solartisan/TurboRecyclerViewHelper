@@ -67,7 +67,7 @@ public class MultiTypeActivity extends AppCompatActivity {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.setNewData(obtainNewData());
+                        mAdapter.resetData(obtainNewData());
                         mRefreshLayout.setRefreshing(false);
                     }
                 }, 2000);

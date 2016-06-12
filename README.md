@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.7-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.8-beta'
 }
 ```
 
@@ -135,10 +135,13 @@ Changelog
     * Fix incorrect slide direction cause refresh
 * **1.0.7-beta**
     * Fix AdapterView setOnClick exception
+* **1.0.8-beta**
+    * Fix TurboRecyclerView sliding in the end does not respond to click events
     
 Thanks
 ------
 [base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
+
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
 License

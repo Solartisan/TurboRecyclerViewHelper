@@ -28,7 +28,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.7-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.8-beta'
 }
 ```
 
@@ -137,13 +137,16 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 * **1.0.5-beta**
     * 修复调用者setSpanSizeLookup被覆盖(这意味着你必须自己处理GridLayoutManager中FullSpan的类型)
 * **1.0.6-beta**
-    * 修复在不能滑动的方向上引起的异常刷新
+    * 修复在不能滑动的方向上Touch事件处理引起的异常刷新
 * **1.0.7-beta**
-    * 修复itemView为AdapterView时抛出异常
+    * 修复itemView为AdapterView时注册点击事件抛出异常
+* **1.0.8-beta**
+    * 修复滑动到底部不响应点击事件的bug
       
 感谢
 ---
 [base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
+
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
     
 许可
