@@ -6,20 +6,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import cc.solart.turbo.OnItemClickListener;
 import cc.solart.turbo.OnLoadMoreListener;
 import cc.solart.turbo.TurboRecyclerView;
 import cc.solart.turbo.simple.adapter.MultiTypeAdapter;
-import cc.solart.turbo.simple.adapter.SimpleAdapter;
-import cc.solart.turbo.simple.decoration.LinearDividerItemDecoration;
-import cc.solart.turbo.simple.decoration.LinearOffsetsItemDecoration;
+import cc.solart.turbo.decoration.LinearOffsetsItemDecoration;
 import cc.solart.turbo.simple.model.MultiModel;
 
 public class MultiTypeActivity extends AppCompatActivity {
@@ -67,7 +61,7 @@ public class MultiTypeActivity extends AppCompatActivity {
                 mHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.setNewData(obtainNewData());
+                        mAdapter.resetData(obtainNewData());
                         mRefreshLayout.setRefreshing(false);
                     }
                 }, 2000);

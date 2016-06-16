@@ -1,6 +1,7 @@
 /*
- * Copyright 2015 - 2016 dinus
- *      Modify solartisan/imilk
+ * This code is cloned from GridOffsetsItemDecoration provided by RecyclerItemDecoration
+ * Copyright (C) 2016 dinus
+ * Copyright (C) 2016 solartisan/imilk
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,47 +19,24 @@ package cc.solart.turbo.decoration;
 
 
 import android.graphics.Rect;
-import android.support.annotation.IntDef;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.SparseArray;
-import android.util.SparseIntArray;
 import android.view.View;
-import android.view.ViewGroup;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
-import cc.solart.turbo.BaseTurboAdapter;
 
 /**
  * This class can only be used in the RecyclerView which use a GridLayoutManager
  * or StaggeredGridLayoutManager, but it's not always work for the StaggeredGridLayoutManager,
  * because we can't figure out which position should belong to the last column or the last row
  */
-public class GridOffsetsItemDecoration extends RecyclerView.ItemDecoration {
-    public static final int GRID_OFFSETS_HORIZONTAL = GridLayoutManager.HORIZONTAL;
-    public static final int GRID_OFFSETS_VERTICAL = GridLayoutManager.VERTICAL;
+public class GridOffsetsItemDecoration extends BaseGridItemDecoration {
 
     private final SparseArray<OffsetsCreator> mTypeOffsetsFactories = new SparseArray<>();
 
-    @IntDef({GRID_OFFSETS_HORIZONTAL, GRID_OFFSETS_VERTICAL})
-    @Retention(RetentionPolicy.SOURCE)
-    protected  @interface Orientation {
-    }
-
-    @Orientation
-    protected int mOrientation;
     private int mVerticalItemOffsets;
     private int mHorizontalItemOffsets;
 
-    public GridOffsetsItemDecoration(@Orientation int orientation) {
-        setOrientation(orientation);
-    }
-
-    public void setOrientation(int orientation) {
-        this.mOrientation = orientation;
+    public GridOffsetsItemDecoration(int orientation) {
+        super(orientation);
     }
 
     public void setVerticalItemOffsets(int verticalItemOffsets) {
@@ -85,7 +63,7 @@ public class GridOffsetsItemDecoration extends RecyclerView.ItemDecoration {
             outRect.right = getHorizontalOffsets(parent, view);
         }
 
-        if (isLastRow(adapterPosition, spanCount, childCount)) {
+        if (isLastRow(parent, adapterPosition, spanCount, childCount)) {
             outRect.bottom = 0;
         }
     }
@@ -120,48 +98,6 @@ public class GridOffsetsItemDecoration extends RecyclerView.ItemDecoration {
         }
 
         return mVerticalItemOffsets;
-    }
-
-
-    protected boolean isFirstColumn(RecyclerView parent, int position, int spanCount, int childCount) {
-        if (mOrientation == GRID_OFFSETS_VERTICAL) {
-            return (position % spanCount == 0);
-        } else {
-            return position < spanCount;
-        }
-    }
-
-    protected boolean isLastColumn(RecyclerView parent, int position, int spanCount, int childCount) {
-        if (mOrientation == GRID_OFFSETS_VERTICAL) {
-            return ((position + 1) % spanCount == 0);
-        } else {
-            int lastColumnCount = childCount % spanCount;
-            lastColumnCount = lastColumnCount == 0 ? spanCount : lastColumnCount;
-            return position >= childCount - lastColumnCount;
-        }
-    }
-
-    protected boolean isLastRow(int position, int spanCount, int childCount) {
-        if (mOrientation == GRID_OFFSETS_VERTICAL) {
-            int lastColumnCount = childCount % spanCount;
-            lastColumnCount = lastColumnCount == 0 ? spanCount : lastColumnCount;
-            return position >= childCount - lastColumnCount;
-        } else {
-            return (position + 1) % spanCount == 0;
-        }
-    }
-
-    private int getSpanCount(RecyclerView parent) {
-        RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
-
-        if (layoutManager instanceof GridLayoutManager) {
-            return ((GridLayoutManager) layoutManager).getSpanCount();
-        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
-            return ((StaggeredGridLayoutManager) layoutManager).getSpanCount();
-        } else {
-            throw new UnsupportedOperationException("the GridDividerItemDecoration can only be used in " +
-                    "the RecyclerView which use a GridLayoutManager or StaggeredGridLayoutManager");
-        }
     }
 
     public void registerTypeOffsets(int itemType, OffsetsCreator offsetsCreator) {
