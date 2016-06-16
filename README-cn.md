@@ -7,6 +7,8 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 
 一个强大并且灵活的RecyclerView库。欢迎大家使用（如果您喜欢，希望您能star一下，你的支持对我来说是巨大的动力）
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
 
 有哪些功能（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
@@ -18,10 +20,7 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 * **支持添加点击事件和长按事件**
 	* 通过给item添加点击事件实现(1.0.2之前版本通过OnItemTouch方案实现，但存在没有点击效果的bug，如有更好的方案劳烦告知。)
 * **支持自定义加载Footer**
-	* 可以通过自定义自己应用的加载效果  
-
-<img src="./preview/simple.gif">
-<img src="./preview/multi.gif">
+	* 可以通过自定义自己应用的加载效果
 
 Gradle
 ---
@@ -149,7 +148,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 许可
 ---
 
-    Copyright 2015 - 2016 solartisan/imilk
+    Copyright (C) 2016 solartisan/imilk
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

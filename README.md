@@ -6,6 +6,8 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 A library that powerful and flexible RecyclerView.
 Like us if you love our work. your support is great power for us.
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
 
 Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
@@ -14,9 +16,6 @@ Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/
 * **Supports add HeaderView and FooterView**
 * **Supports item click and long click**
 * **Supports custom load view**
-
-<img src="./preview/simple.gif">
-<img src="./preview/multi.gif">
 
 Gradle
 ---
@@ -144,7 +143,7 @@ Thanks
 License
 ---
 
-    Copyright 2015 - 2016 solartisan/imilk
+    Copyright (C) 2016 solartisan/imilk
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
