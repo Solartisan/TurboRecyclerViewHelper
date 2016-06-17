@@ -106,7 +106,12 @@ public class GridSpanOffsetsItemDecoration extends GridOffsetsItemDecoration {
             int count = findFullSpanCountByPosition(position);
             return ((position - count) % spanCount == 0);
         } else {
-            // TODO Consider full-span factors
+            if(position == 0){
+                boolean isFirst = isFullSpan(parent, position, spanCount);
+                if(isFirst){
+                    return true;
+                }
+            }
             return position < spanCount;
         }
     }
@@ -121,10 +126,46 @@ public class GridSpanOffsetsItemDecoration extends GridOffsetsItemDecoration {
             int count = findFullSpanCountByPosition(position);
             return ((position + 1 - count) % spanCount == 0);
         } else {
-            // TODO Consider full-span factors
-            int lastColumnCount = childCount % spanCount;
+            int count = findFullSpanCountByPosition(position);
+            int lastColumnCount = (childCount-count) % spanCount;
             lastColumnCount = lastColumnCount == 0 ? spanCount : lastColumnCount;
             return position >= childCount - lastColumnCount;
+        }
+    }
+
+    protected boolean isFirstRow(RecyclerView parent, int position, int spanCount, int childCount) {
+        if (mOrientation == VERTICAL) {
+            if(position == 0){
+                boolean isFirst = isFullSpan(parent, position, spanCount);
+                if(isFirst){
+                    return true;
+                }
+            }
+            return position < spanCount;
+        } else {
+            boolean isFirst = isFullSpan(parent, position, spanCount);
+            if (isFirst) {
+                return isFirst;
+            }
+            int count = findFullSpanCountByPosition(position);
+            return ((position - count) % spanCount == 0);
+        }
+    }
+
+
+    protected boolean isLastRow(RecyclerView parent, int position, int spanCount, int childCount) {
+        if (mOrientation == VERTICAL) {
+            int count = findFullSpanCountByPosition(position);
+            int lastColumnCount = (childCount-count) % spanCount;
+            lastColumnCount = lastColumnCount == 0 ? spanCount : lastColumnCount;
+            return position >= childCount - lastColumnCount;
+        } else {
+            boolean isLast = isFullSpan(parent, position, spanCount);
+            if (isLast) {
+                return isLast;
+            }
+            int count = findFullSpanCountByPosition(position);
+            return ((position + 1 - count) % spanCount == 0);
         }
     }
 

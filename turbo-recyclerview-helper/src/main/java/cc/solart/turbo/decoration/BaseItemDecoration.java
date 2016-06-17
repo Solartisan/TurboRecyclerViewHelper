@@ -15,16 +15,17 @@
  */
 package cc.solart.turbo.decoration;
 
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 
 /**
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
-public abstract class BaseItemDecoration extends RecyclerView.ItemDecoration{
-    public static final int HORIZONTAL = GridLayoutManager.HORIZONTAL;
-    public static final int VERTICAL = GridLayoutManager.VERTICAL;
+public abstract class BaseItemDecoration extends RecyclerView.ItemDecoration {
+    protected static final String TAG = "BaseItemDecoration";
+    public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
+    public static final int VERTICAL = OrientationHelper.VERTICAL;
     protected int mOrientation;
 
     public BaseItemDecoration(int orientation) {
