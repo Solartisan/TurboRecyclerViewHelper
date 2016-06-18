@@ -7,7 +7,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,7 +36,7 @@ dependencies {
 }
 
 
-version = "1.0.8-beta"
+version = "1.0.9-beta"
 
 // 根节点添加
 def siteUrl = 'https://github.com/Solartisan/TurboRecyclerViewHelper'    // project homepage

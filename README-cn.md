@@ -28,7 +28,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.8-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.9-beta'
 }
 ```
 
@@ -142,6 +142,8 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 修复itemView为AdapterView时注册点击事件抛出异常
 * **1.0.8-beta**
     * 修复滑动到底部不响应点击事件的bug
+* **1.0.9-beta**
+    * 添加removeData(List<T> data)方法
       
 感谢
 ---

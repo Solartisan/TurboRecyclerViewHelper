@@ -89,7 +89,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public void add(int position, T item) {
         if (position < 0 || position > mData.size()) {
-            Log.e(TAG, "position = " + position + ", IndexOutOfBounds, please check your code!");
+            Log.e(TAG, "add position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
         }
         mData.add(position, item);
@@ -105,7 +105,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
 
     public void remove(int position) {
         if (position < 0 || position >= mData.size()) {
-            Log.e(TAG, "position = " + position + ", IndexOutOfBounds, please check your code!");
+            Log.e(TAG, "remove position = " + position + ", IndexOutOfBounds, please check your code!");
             return;
         }
         mData.remove(position);
@@ -120,8 +120,15 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     public void addData(List<T> data) {
         if (data != null) {
             this.mData.addAll(data);
+            notifyDataSetChanged();
         }
-        notifyDataSetChanged();
+    }
+
+    public void removeData(List<T> data) {
+        if (data != null) {
+            this.mData.removeAll(data);
+            notifyDataSetChanged();
+        }
     }
 
     public void resetData(List<T> data) {
@@ -144,7 +151,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
      */
     public T getItem(int position) {
         if (position < 0 || position >= mData.size()) {
-            Log.e(TAG, "position = " + position + ", IndexOutOfBounds, please check your code!");
+            Log.e(TAG, "getItem position = " + position + ", IndexOutOfBounds, please check your code!");
             return null;
         }
         return mData.get(position);
@@ -168,7 +175,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Rec
     }
 
     /**
-     * Whether there is data exists？
+     * Whether there is data exists
      *
      * @return
      */

@@ -57,15 +57,10 @@ public class TurboRecyclerView extends RecyclerView {
 
     private int mInitialMotionX, mInitialMotionY;
     private int mTouchSlop;
-    /**
-     * 最后一个可见的item的位置
-     */
-    private int mLastVisibleItemPosition;
 
-    /**
-     * 最后一个的位置 for layoutManager{@link StaggeredGridLayoutManager}
-     */
+    private int mLastVisibleItemPosition;
     private int[] mLastPositions;
+
     private int mTotalDragDistance;
 
     private boolean mIsLoading;

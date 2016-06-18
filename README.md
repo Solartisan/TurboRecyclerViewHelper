@@ -23,7 +23,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.8-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.0.9-beta'
 }
 ```
 
@@ -137,7 +137,9 @@ Changelog
     * Fix AdapterView setOnClick exception
 * **1.0.8-beta**
     * Fix TurboRecyclerView sliding in the end does not respond to click events
-    
+* **1.0.9-beta**
+    * add removeData(List<T> data)
+
 Thanks
 ------
 [base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
