@@ -1,5 +1,6 @@
 package cc.solart.turbo.simple;
 
+import android.content.ContentUris;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void empty(View viw){
         Intent intent = new Intent(this,EmptyActivity.class);
+        startActivity(intent);
+    }
+
+    public void cursor(View viw){
+        Intent intent = new Intent(this,CursorActivity.class);
         startActivity(intent);
     }
 }

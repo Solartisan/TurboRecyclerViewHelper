@@ -290,10 +290,10 @@ public class TurboRecyclerView extends RecyclerView {
     }
 
     private boolean isEmpty() {
-        if (getAdapter() == null || !(getAdapter() instanceof BaseTurboAdapter)) {
+        if (getAdapter() == null || !(getAdapter() instanceof AbsTurboAdapter)) {
             return true;
         }
-        return ((BaseTurboAdapter) getAdapter()).isEmpty();
+        return ((AbsTurboAdapter) getAdapter()).isEmpty();
     }
 
     @Override
