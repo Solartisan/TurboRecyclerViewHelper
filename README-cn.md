@@ -18,7 +18,9 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 * **支持添加点击事件和长按事件**
 	* 通过给item添加点击事件实现(1.0.2之前版本通过OnItemTouch方案实现，但存在没有点击效果的bug，如有更好的方案劳烦告知。)
 * **支持自定义加载Footer**
-	* 可以通过自定义自己应用的加载效果  
+	* 可以通过自定义自己应用的加载效果
+* **支持加载数据库数据**
+    * 可配合CursorLoader加载Cursor
 
 <img src="./preview/simple.gif">
 <img src="./preview/multi.gif">
@@ -28,7 +30,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.9-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.1.0'
 }
 ```
 
@@ -144,6 +146,8 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 修复滑动到底部不响应点击事件的bug
 * **1.0.9-beta**
     * 添加removeData(List<T> data)方法
+* **1.1.0**
+    * 重构Adapter，新增BaseCursorAdapter
       
 感谢
 ---

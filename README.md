@@ -14,6 +14,7 @@ Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/
 * **Supports add HeaderView and FooterView**
 * **Supports item click and long click**
 * **Supports custom load view**
+* **Supports loading database data**
 
 <img src="./preview/simple.gif">
 <img src="./preview/multi.gif">
@@ -23,7 +24,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.0.9-beta'
+    compile 'cc.solart:turbo-recyclerview-helper:1.1.0'
 }
 ```
 
@@ -139,6 +140,8 @@ Changelog
     * Fix TurboRecyclerView sliding in the end does not respond to click events
 * **1.0.9-beta**
     * add removeData(List<T> data)
+* **1.1.0**
+    * refactor Adapter, add BaseCursorAdapter
 
 Thanks
 ------
