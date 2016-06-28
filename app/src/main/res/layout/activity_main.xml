@@ -30,4 +30,11 @@
         android:layout_height="wrap_content"
         android:text="empty view"
         android:onClick="empty"/>
+
+    <Button
+        android:id="@+id/cursor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cursor"
+        android:onClick="cursor"/>
 </LinearLayout>

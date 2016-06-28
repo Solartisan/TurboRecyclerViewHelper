@@ -29,13 +29,6 @@ public class MultiTypeAdapter extends BaseTurboAdapter<MultiModel,BaseViewHolder
     protected int getDefItemViewType(int position) {
         MultiModel model = getItem(position);
         return model.getmType();
-//        if(position%3==0){
-//            return TYPE_1;
-//        }else if(position%3==1){
-//            return TYPE_2;
-//        }else{
-//            return TYPE_3;
-//        }
     }
 
     @Override
