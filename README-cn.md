@@ -1,38 +1,48 @@
+
 TurboRecyclerViewHelper project
 ===============================
 
 >* **[实现RecyclerView的功能扩展](http://solart.cc/2016/06/01/turbo-recyclerview-helper-1/)**
+>* **[实现Adapter的优化封装](http://solart.cc/2016/06/18/turbo-recyclerview-helper-2/)**
 
 Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecyclerViewHelper.svg?branch=master)](https://travis-ci.org/Solartisan/TurboRecyclerViewHelper)
 
 一个强大并且灵活的RecyclerView库。欢迎大家使用（如果您喜欢，希望您能star一下，你的支持对我来说是巨大的动力）
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
+
+展示一个实例(配合GridSpanOffsetsItemDecoration实现)
+
+<img src="./preview/example.jpg">
+
 
 有哪些功能（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
 * **上拉/左滑加载更多**
-	* 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过渡效果，所以针对这种情况实现了有过渡效果的上拉加载部分的实现
+    * 为什么不做下拉刷新？因为有太多强大而炫酷的下拉刷新控件，目前针对RecyclerView的上拉加载大都没有拖拽过渡效果，所以针对这种情况实现了有过渡效果的上拉加载部分的实现
 * **支持设置EmptyView**
-	* 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）
+    * 在数据为null时显示一个EmptyView提示用户（类似ListView.setEmptyView）
 * **支持添加Header和Footer** 
 * **支持添加点击事件和长按事件**
-	* 通过给item添加点击事件实现(1.0.2之前版本通过OnItemTouch方案实现，但存在没有点击效果的bug，如有更好的方案劳烦告知。)
+    * 通过给item添加点击事件实现(1.0.2之前版本通过OnItemTouch方案实现，但存在没有点击效果的bug，如有更好的方案劳烦告知。)
 * **支持自定义加载Footer**
-	* 可以通过自定义自己应用的加载效果
+    * 可以通过自定义自己应用的加载效果
 * **支持加载数据库数据**
     * 可配合CursorLoader加载Cursor
+* **支持多种自定义ItemDecoration辅助布局**
 
-<img src="./preview/simple.gif">
-<img src="./preview/multi.gif">
+
 
 Gradle
 ---
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.1.0'
+    compile 'cc.solart:turbo-recyclerview-helper:1.2.0'
 }
 ```
+
 
 如何使用
 ---
@@ -96,7 +106,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
 ```
 
 #### **添加点击和长按事件**
-        
+
 ```java
         mAdapter.addOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -123,6 +133,7 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
    	    });
 ```
 
+
 更新日志
 ---
 * **1.0.0-beta**
@@ -148,24 +159,28 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 添加removeData(List<T> data)方法
 * **1.1.0**
     * 重构Adapter，新增BaseCursorAdapter
-      
+* **1.2.0**
+    * 新增decoration包，辅助构建布局间距
+
+
+
 感谢
 ---
 [base-adapter-helper](https://github.com/JoanZapata/base-adapter-helper)
 
 [RecyclerItemDecoration](https://github.com/dinuscxj/RecyclerItemDecoration)
-    
+​    
 许可
 ---
 
-    Copyright 2015 - 2016 solartisan/imilk
+    Copyright (C) 2016 solartisan/imilk
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
     You may obtain a copy of the License at
-
+    
         http://www.apache.org/licenses/LICENSE-2.0
-
+    
     Unless required by applicable law or agreed to in writing, software
     distributed under the License is distributed on an "AS IS" BASIS,
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.

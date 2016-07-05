@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 - 2016 solartisan/imilk
+ * Copyright (C) 2016 solartisan/imilk
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -189,7 +189,6 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Abs
      */
     abstract protected void convert(VH holder, T item);
 
-
     @Override
     public void onLoadingMore() {
         if (!mLoading) {
@@ -202,6 +201,5 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Abs
         mLoading = false;
         addData(data);
     }
-
 
 }

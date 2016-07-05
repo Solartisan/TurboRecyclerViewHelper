@@ -3,7 +3,6 @@ package cc.solart.turbo.simple;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,7 +18,8 @@ import java.util.Arrays;
 import cc.solart.turbo.OnItemClickListener;
 import cc.solart.turbo.OnLoadMoreListener;
 import cc.solart.turbo.TurboRecyclerView;
-import cc.solart.turbo.simple.decoration.LinearDividerItemDecoration;
+import cc.solart.turbo.decoration.BaseItemDecoration;
+import cc.solart.turbo.decoration.LinearDividerItemDecoration;
 import cc.solart.turbo.simple.adapter.SimpleAdapter;
 
 public class SimpleActivity extends AppCompatActivity {
@@ -36,7 +36,7 @@ public class SimpleActivity extends AppCompatActivity {
         mRecyclerView = (TurboRecyclerView) findViewById(R.id.rv_list);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new LinearDividerItemDecoration(this, LinearDividerItemDecoration.LINEAR_DIVIDER_VERTICAL));
+        mRecyclerView.addItemDecoration(new LinearDividerItemDecoration(this, BaseItemDecoration.VERTICAL));
 
         mAdapter = new SimpleAdapter(this, Arrays.asList(sCheeseStrings));
         View header = LayoutInflater.from(this).inflate(R.layout.item_header, (ViewGroup) mRecyclerView.getParent(),false);

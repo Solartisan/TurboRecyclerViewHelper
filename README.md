@@ -6,6 +6,8 @@ Travis master: [![Build Status](https://api.travis-ci.org/Solartisan/TurboRecycl
 A library that powerful and flexible RecyclerView.
 Like us if you love our work. your support is great power for us.
 
+<img src="./preview/simple.gif">
+<img src="./preview/multi.gif">
 
 Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/raw/master/preview/turbo_demo.apk)）
 -----------------------------------------------------------------------------------------------------------------
@@ -15,16 +17,14 @@ Features（[download apk](https://github.com/Solartisan/TurboRecyclerViewHelper/
 * **Supports item click and long click**
 * **Supports custom load view**
 * **Supports loading database data**
-
-<img src="./preview/simple.gif">
-<img src="./preview/multi.gif">
+* **Support for a variety of custom ItemDecoration layout**
 
 Gradle
 ---
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.1.0'
+    compile 'cc.solart:turbo-recyclerview-helper:1.2.0'
 }
 ```
 
@@ -139,9 +139,11 @@ Changelog
 * **1.0.8-beta**
     * Fix TurboRecyclerView sliding in the end does not respond to click events
 * **1.0.9-beta**
-    * add removeData(List<T> data)
+    * Add removeData(List<T> data)
 * **1.1.0**
-    * refactor Adapter, add BaseCursorAdapter
+    * Refactor Adapter, add BaseCursorAdapter
+* **1.2.0**
+    * Add decoration pkg
 
 Thanks
 ------
@@ -152,7 +154,7 @@ Thanks
 License
 ---
 
-    Copyright 2015 - 2016 solartisan/imilk
+    Copyright (C) 2016 solartisan/imilk
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

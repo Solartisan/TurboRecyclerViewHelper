@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package cc.solart.turbo;
+package cc.solart.turbo.decoration;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 /**
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
-public interface OnItemClickListener {
+public abstract class BaseItemDecoration extends RecyclerView.ItemDecoration {
+    protected static final String TAG = "BaseItemDecoration";
+    public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
+    public static final int VERTICAL = LinearLayout.VERTICAL;
+    protected int mOrientation;
 
-    void onItemClick(RecyclerView.ViewHolder vh, int position);
+    public BaseItemDecoration(int orientation) {
+        setOrientation(orientation);
+    }
+
+    public void setOrientation(int orientation) {
+        this.mOrientation = orientation;
+    }
 }

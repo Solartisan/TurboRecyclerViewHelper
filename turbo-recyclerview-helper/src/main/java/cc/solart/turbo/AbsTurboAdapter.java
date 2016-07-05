@@ -82,7 +82,6 @@ abstract class AbsTurboAdapter<T, VH extends BaseViewHolder> extends RecyclerVie
 
     /**
      * Whether there is data exists
-     *
      * @return
      */
     abstract protected boolean isEmpty();
