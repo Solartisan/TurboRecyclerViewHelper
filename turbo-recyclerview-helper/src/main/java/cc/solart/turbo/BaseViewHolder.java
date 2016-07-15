@@ -37,13 +37,12 @@ public class BaseViewHolder extends RecyclerView.ViewHolder {
     }
 
     @SuppressWarnings("unchecked")
-    public  <T extends View> T findViewById(int viewId) {
+    public  <V extends View> V findViewById(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
             view = itemView.findViewById(viewId);
             mViews.put(viewId, view);
         }
-        return (T) view;
+        return (V) view;
     }
-
 }

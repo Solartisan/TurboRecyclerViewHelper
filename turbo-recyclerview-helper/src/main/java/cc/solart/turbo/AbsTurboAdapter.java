@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 /**
  * A subclass of RecyclerView.Adapter responsible for providing views that add header/footer/empty view
- * <p/>
+ *
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
@@ -81,8 +81,8 @@ abstract class AbsTurboAdapter<T, VH extends BaseViewHolder> extends RecyclerVie
     abstract public int getItemCount();
 
     /**
-     * Whether there is data exists
-     * @return
+     *
+     * @return Whether there is data exists
      */
     abstract protected boolean isEmpty();
 
@@ -119,34 +119,17 @@ abstract class AbsTurboAdapter<T, VH extends BaseViewHolder> extends RecyclerVie
 
     }
 
-    /**
-     * custom Loading Footer
-     *
-     * @param parent
-     * @return
-     */
+
     protected BaseViewHolder onCreateLoadingViewHolder(ViewGroup parent) {
         return null;
     }
 
-    /**
-     * create def view holder
-     *
-     * @param parent
-     * @param viewType
-     * @return
-     */
     abstract protected BaseViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType);
 
     private BaseViewHolder createBaseViewHolder(ViewGroup parent, int layoutResId) {
         return new BaseViewHolder(inflateItemView(layoutResId, parent));
     }
 
-    /**
-     * @param layoutResId
-     * @param parent
-     * @return
-     */
     protected View inflateItemView(int layoutResId, ViewGroup parent) {
         return mLayoutInflater.inflate(layoutResId, parent, false);
     }
@@ -226,7 +209,7 @@ abstract class AbsTurboAdapter<T, VH extends BaseViewHolder> extends RecyclerVie
     }
 
     /**
-     * Sets the view to show if the adapter is empty
+     * @param emptyView Sets the view to show if the adapter is empty
      */
     public void setEmptyView(View emptyView) {
         mEmptyView = emptyView;

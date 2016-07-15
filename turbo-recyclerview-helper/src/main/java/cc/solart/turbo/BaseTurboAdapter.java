@@ -81,14 +81,14 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Abs
     }
 
     /**
-     * additional data;
      *
-     * @param data
+     * @param data additional data
      */
     public void addData(List<T> data) {
         if (data != null) {
+            int pos = getItemCount();
             this.mData.addAll(data);
-            notifyDataSetChanged();
+            notifyItemRangeInserted(pos, data.size() - 1);
         }
     }
 
@@ -131,12 +131,6 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Abs
         return position;
     }
 
-
-    /**
-     * Whether there is data exists
-     *
-     * @return
-     */
     @Override
     protected boolean isEmpty() {
         return getHeaderViewCount() + getFooterViewCount() + getData().size() == 0;
@@ -193,7 +187,7 @@ public abstract class BaseTurboAdapter<T, VH extends BaseViewHolder> extends Abs
     public void onLoadingMore() {
         if (!mLoading) {
             mLoading = true;
-            notifyDataSetChanged();
+            notifyItemChanged(getItemCount());
         }
     }
 

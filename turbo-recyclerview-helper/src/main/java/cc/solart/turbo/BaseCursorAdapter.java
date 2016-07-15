@@ -17,6 +17,7 @@ package cc.solart.turbo;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 import android.widget.Filter;
 import android.widget.FilterQueryProvider;
 import android.widget.Filterable;
@@ -266,7 +267,8 @@ public abstract class BaseCursorAdapter<VH extends BaseViewHolder> extends AbsTu
             mRowIDColumn = -1;
             mDataValid = false;
             // notify the observers about the lack of a data set
-            notifyItemRangeRemoved(getHeaderViewCount(), oldCursor.getCount());
+            notifyDataSetChanged();
+//            notifyItemRangeRemoved(0, oldCursor.getCount() - 1);
         }
         return oldCursor;
     }

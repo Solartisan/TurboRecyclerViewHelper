@@ -24,7 +24,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.2.0'
+    compile 'cc.solart:turbo-recyclerview-helper:1.2.1'
 }
 ```
 
@@ -144,6 +144,9 @@ Changelog
     * Refactor Adapter, add BaseCursorAdapter
 * **1.2.0**
     * Add decoration pkg
+* **1.2.1**
+    * Modify range notify
+    * Fix swapCursor error
 
 Thanks
 ------

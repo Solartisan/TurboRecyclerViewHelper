@@ -39,7 +39,7 @@ Gradle
 ```
 dependencies {
     ...
-    compile 'cc.solart:turbo-recyclerview-helper:1.2.0'
+    compile 'cc.solart:turbo-recyclerview-helper:1.2.1'
 }
 ```
 
@@ -161,6 +161,9 @@ public class SimpleAdapter extends BaseTurboAdapter<String, SimpleAdapter.Simple
     * 重构Adapter，新增BaseCursorAdapter
 * **1.2.0**
     * 新增decoration包，辅助构建布局间距
+* **1.2.1**
+    * 更改addData为局部刷新的方式
+    * 修复swapCursor错误
 
 
 

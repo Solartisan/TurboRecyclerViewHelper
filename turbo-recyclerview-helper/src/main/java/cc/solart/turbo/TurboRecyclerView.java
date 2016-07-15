@@ -37,7 +37,7 @@ import java.util.List;
 
 /**
  * A subclass of RecyclerView responsible for providing views that refresh new data set.
- * <p/>
+ *
  * author: imilk
  * https://github.com/Solartisan/TurboRecyclerViewHelper
  */
@@ -117,9 +117,6 @@ public class TurboRecyclerView extends RecyclerView {
         mOnLoadMoreListeners.remove(listener);
     }
 
-    /**
-     * @param enabled
-     */
     public void setLoadMoreEnabled(boolean enabled) {
         mLoadEnabled = enabled;
     }
@@ -408,12 +405,7 @@ public class TurboRecyclerView extends RecyclerView {
         }
     }
 
-    /**
-     * Calculating the damping distance of any axis
-     *
-     * @param delta
-     * @return
-     */
+    //Calculating the damping distance of any axis
     private float dampAxis(int delta) {
         final float scrollEnd = delta * DRAG_RATE;
         float mCurrentDragPercent = scrollEnd / mTotalDragDistance;
@@ -441,12 +433,6 @@ public class TurboRecyclerView extends RecyclerView {
         mResetAnimator.start();
     }
 
-
-    /**
-     * complete loading
-     *
-     * @param data
-     */
     public void loadMoreComplete(List<?> data) {
         if (mIsLoading) {
             mIsLoading = false;
